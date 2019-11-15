@@ -1,0 +1,116 @@
+<div class="container">
+  <div *ngIf="detalleEquipo==0" class="text-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="detalleEquipo!=0">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-equipo-tab" data-toggle="tab" href="#nav-equipo" role="tab"
+          aria-controls="nav-equipo" aria-selected="true">Equipo</a>
+        <a class="nav-item nav-link" id="nav-estadio-tab" data-toggle="tab" href="#nav-estadio" role="tab"
+          aria-controls="nav-estadio" aria-selected="false">Estadio</a>
+        <a class="nav-item nav-link" id="nav-jugadores-tab" data-toggle="tab" href="#nav-jugadores" role="tab"
+          aria-controls="nav-jugadores" aria-selected="false">Jugadores</a>
+        <a class="nav-item nav-link" id="nav-posiciones-tab" data-toggle="tab" href="#nav-posiciones" role="tab"
+          aria-controls="nav-posiciones" aria-selected="false">Posicion</a>
+      </div>
+    </nav>
+
+    <div *ngFor="let data of detalleEquipo">
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active mt-3" id="nav-equipo" role="tabpanel" aria-labelledby="nav-equipo-tab">
+          <div class="bd-example">
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active mt-2" style="height:  300px">
+                  <img src="{{data.strTeamBadge}}" class="d-block w-40 mx-auto h-75" alt="...">
+                </div>
+                <div class="carousel-item mt-2" style="height:  300px">
+                  <img src="{{data.strTeamJersey}}" class="d-block w-40 mx-auto h-75" alt="...">
+                </div>
+                <div class="carousel-item mt-2" style="height:  300px">
+                  <img src="{{data.strTeamLogo}}" class="d-block w-40 mx-auto h-75" alt="...">
+                </div>
+              </div>
+              <a class="carousel-control-prev bg-primary" href="#carouselExampleCaptions" role="button"
+                data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next bg-primary" href="#carouselExampleCaptions" role="button"
+                data-slide="next">
+                <span class="carousel-control-next-icon text-success" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+          <div class="mt-3">
+            <div class="page-header">
+              <h2>{{data.strTeam}}</h2>
+            </div>
+            <p class="text-justify">{{data.strDescriptionEN}}</p>
+            <p>
+              <a href="{{data.strFacebook}}"><i class="fab fa-facebook-square fa-3x mr-2 text-primary"></i></a>
+              <a href="{{data.strInstagram}}"><i class="fab fa-instagram fa-3x mr-2 text-primary"></i></a>
+              <a href="{{data.strTwitter}}"><i class="fab fa-twitter-square fa-3x mr-2 text-primary"></i></a>
+            </p>
+          </div>
+        </div>
+
+        <div class="tab-pane fade mt-3" id="nav-estadio" role="tabpanel" aria-labelledby="nav-estadio-tab">
+          <div class="mb-5">
+            <img src="{{data.strStadiumThumb}}" alt="" class="rounded w-100 shadow-lg bg-white rounded">
+          </div>
+          <div>
+            <h2>{{data.strStadium}}</h2>
+            <p class="text-justify">{{data.strStadiumDescription}}</p>
+          </div>
+        </div>
+        <div class="tab-pane fade mt-3" id="nav-jugadores" role="tabpanel" aria-labelledby="nav-jugadores-tab">
+          <app-list-jugadores equipoId={{data.idTeam}}></app-list-jugadores>
+        </div>
+        <div class="tab-pane fade mt-3" id="nav-posiciones" role="tabpanel" aria-labelledby="nav-posiciones-tab">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Posicion</th>
+                  <th>Equipo</th>
+                  <th>PJ</th>
+                  <th>PG</th>
+                  <th>PE</th>
+                  <th>PP</th>
+                  <th>GF</th>
+                  <th>GC</th>
+                  <th>Puntos</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let posicion of tablaDePosiciones; let i = index">
+                <tr [ngClass]="{'table-active': posicion.teamid==data.idTeam}">
+                  <td>{{i+1}}</td>
+                  <td>{{posicion.name}}</td>
+                  <td>{{posicion.played}}</td>
+                  <td>{{posicion.win}}</td>
+                  <td>{{posicion.draw}}</td>
+                  <td>{{posicion.loss}}</td>
+                  <td>{{posicion.goalsfor}}</td>
+                  <td>{{posicion.goalsagainst}}</td>
+                  <td>{{posicion.total}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

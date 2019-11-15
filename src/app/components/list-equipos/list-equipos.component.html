@@ -1,0 +1,51 @@
+<div class="container text-center">
+  <div *ngIf="equipos==0">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  
+  <div *ngIf="equipos!=0">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-equipos-tab" data-toggle="tab" href="#nav-equipos" role="tab"
+          aria-controls="nav-equipos" aria-selected="true">Equipos</a>
+        <a class="nav-item nav-link" id="nav-equipos-fav-tab" data-toggle="tab" href="#nav-equipos-fav" role="tab"
+          aria-controls="nav-equipos-fav" aria-selected="false">Equipos Favoritos</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-equipos" role="tabpanel" aria-labelledby="nav-equipos-tab">
+        <div class="row">
+          <div *ngFor="let equipo of equipos" class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card mt-3">
+              <a routerLink="/equipo/{{equipo.idTeam}}" class="btn btn-light">
+                <img src="{{equipo.strTeamBadge}}" class="card-img-top mx-auto mt-3 mb-3">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title">{{equipo.strTeam}}</h5>
+                <button (click)="addIdEquiposFavoritos(equipo.idTeam)" class="btn btn-outline-success">
+                  <i class="fas fa-star mr-1 text-warning"></i>Favoritos
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-equipos-fav" role="tabpanel" aria-labelledby="nav-equipos-fav-tab">
+        <div class="row">
+          <div *ngFor="let equipoF of listaFavoritos" class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card mt-3">
+              <a routerLink="/equipo/{{equipoF.idTeam}}" class="btn btn-light">
+                <img src="{{equipoF.strTeamBadge}}" class="card-img-top mx-auto mt-3 mb-3">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title">{{equipoF.strTeam}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

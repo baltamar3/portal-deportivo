@@ -1,0 +1,35 @@
+<div class="conatiner">
+  <div *ngIf="jugadorDetalle==0" class="text-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="jugadorDetalle!=0">
+    <div *ngFor="let data of jugadorDetalle" class="row">
+      <div class="card mb-3 col-12">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{data.strCutout || data.strThumb}}" class="card-img img-thumbnail">
+            <div class="card-body">
+              <h5 class="card-title">{{data.strPlayer}}</h5>
+              <p><strong>Altura: </strong>{{data.strHeight || "No Registra"}}</p>
+              <p><strong>Peso: </strong>{{data.strWeight  || "No Registra"}} </p>
+              <p><strong>Número: </strong>{{data.strNumber || "No Registra"}}</p>
+              <p><strong>Posición: </strong>{{data.strPosition || "No Registra"}}</p>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <p><strong>Biografia</strong></p>
+              <div class="overflow-auto border-top" style="height: 500px;">
+                <p class="card-text">{{data.strDescriptionEN}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
