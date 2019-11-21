@@ -27,5 +27,17 @@ export class EquiposService {
   getTablaDePosiciones(){
     return this.http.get(`https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=4328&s=1920`);
   }
+
+  getUltimos5Eventos(equipoId:string){
+    return this.http.get(`https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=${equipoId}`)
+  }
+
+  getProximos5Eventos(equipoId:string){
+    return this.http.get(`https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${equipoId}`)
+  }
+
+  getCalendario(){
+    return this.http.get(`https://www.thesportsdb.com/api/v1/json/1/eventsseason.php?id=4328&s=1920`);
+  }
   
 }

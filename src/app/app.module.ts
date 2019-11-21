@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
+import { PushNotificationsModule } from 'ng-push';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +23,8 @@ import { DetalleJugadorComponent } from './components/detalle-jugador/detalle-ju
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    PushNotificationsModule
   ],
   providers: [EquiposService],
   bootstrap: [AppComponent]

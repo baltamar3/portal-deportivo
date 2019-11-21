@@ -12,25 +12,60 @@ export class DetalleEquipoComponent implements OnInit {
   detalleEquipo = [];
   tablaDePosiciones = [];
   posicionN = 0;
+  eventosPasados = [];
+  eventosProximos = [];
+  calendario = []
+  
 
   constructor(private EquiposService: EquiposService, private rutaActiva: ActivatedRoute) { }
 
   ngOnInit() {
     this.getEquipoById(this.rutaActiva.snapshot.params['id']);
     this.getTablaDePosiciones();
+    this.getUltimos5Eventos(this.rutaActiva.snapshot.params['id']);
+    this.getProximos5Eventos(this.rutaActiva.snapshot.params['id']);
+    this.getCalendario()
   }
 
-  getEquipoById(id: string){
-    this.EquiposService.getEquipoByid(id).subscribe((data)=>{
-      console.log("Equipo ecnontrado:", data["teams"]);
+  getnow() : string { return Date();}
+  
+  getEquipoById(id: string) {
+    this.EquiposService.getEquipoByid(id).subscribe((data) => {
+      console.log("Equipo encontrado:", data["teams"]);
       this.detalleEquipo = data['teams'];
     });
   }
 
-  getTablaDePosiciones(){
-    this.EquiposService.getTablaDePosiciones().subscribe((data)=>{
+  getTablaDePosiciones() {
+    this.EquiposService.getTablaDePosiciones().subscribe((data) => {
       console.log("Tabla:", data["table"]);
       this.tablaDePosiciones = data['table'];
     });
   }
+
+  getUltimos5Eventos(id: string) {
+    this.EquiposService.getUltimos5Eventos(id).subscribe((data) => {
+      console.log("results:", data["results"]);
+      this.eventosPasados = data['results'];
+    });
+  }
+
+  getProximos5Eventos(id: string) {
+    this.EquiposService.getProximos5Eventos(id).subscribe((data) => {
+      console.log("eventos proximos:", data["events"]);
+      this.eventosProximos = data['events'];
+    });
+  }
+
+  getCalendario(){
+    this.EquiposService.getCalendario().subscribe((data) => {
+      console.log("Calendario de la liga:", data["events"]);
+      this.calendario = data['events'];
+    });
+  }
+
+  getDetallesEventoPasado(fecha:Date):void{
+    //if(fecha<Date.now()){return true}
+  }
+
 }

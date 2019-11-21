@@ -15,7 +15,9 @@
         <a class="nav-item nav-link" id="nav-jugadores-tab" data-toggle="tab" href="#nav-jugadores" role="tab"
           aria-controls="nav-jugadores" aria-selected="false">Jugadores</a>
         <a class="nav-item nav-link" id="nav-posiciones-tab" data-toggle="tab" href="#nav-posiciones" role="tab"
-          aria-controls="nav-posiciones" aria-selected="false">Posicion</a>
+          aria-controls="nav-posiciones" aria-selected="false">Posición</a>
+        <a class="nav-item nav-link" id="nav-eventos-tab" data-toggle="tab" href="#nav-eventos" role="tab"
+          aria-controls="nav-eventos" aria-selected="false">Eventos</a>
       </div>
     </nav>
 
@@ -104,6 +106,79 @@
                   <td>{{posicion.goalsfor}}</td>
                   <td>{{posicion.goalsagainst}}</td>
                   <td>{{posicion.total}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane fade mt-3" id="nav-eventos" role="tabpanel" aria-labelledby="nav-eventos-tab">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th colspan="5" class="bg-primary text-white">Últimos 5 Eventos</th>
+                </tr>
+                <tr>
+                  <th>Local</th>
+                  <th>Visitante</th>
+                  <th>Goles L.</th>
+                  <th>Goles V.</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let resultado of eventosPasados">
+                <tr>
+                  <td>{{resultado.strHomeTeam}}</td>
+                  <td>{{resultado.strAwayTeam}}</td>
+                  <td>{{resultado.intHomeScore}}</td>
+                  <td>{{resultado.intAwayScore}}</td>
+                  <td>{{resultado.dateEvent}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th colspan="5" class="bg-primary text-white">Próximos 5 Eventos</th>
+                </tr>
+                <tr>
+                  <th>Local</th>
+                  <th>Visitante</th>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let evento of eventosProximos; let i = index">
+                <tr>
+                  <td>{{evento.strHomeTeam}}</td>
+                  <td>{{evento.strAwayTeam}}</td>
+                  <td>{{evento.dateEvent}}</td>
+                  <td>{{evento.strTime}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th colspan="5" class="bg-primary text-white">Calendario del Equipo</th>
+                </tr>
+                <tr>
+                  <th>Local</th>
+                  <th>Visitante</th>
+                  <th>Fecha</th>
+                  <th>ver</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let evento of calendario">
+                <tr *ngIf="evento.strHomeTeam==data.strTeam || evento.strAwayTeam==data.strTeam">
+                  <td>{{evento.strHomeTeam}}</td>
+                  <td>{{evento.strAwayTeam}}</td>
+                  <td>{{evento.dateEvent}}</td>
+                  <td *ngIf = "(evento.dateEvent | date: 'yyyy-MM-dd') < (getnow() | date: 'yyyy-MM-dd')"><button>ver</button></td>
                 </tr>
               </tbody>
             </table>

@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { PushNotificationsService } from 'ng-push';
+
 import { EquiposService } from './../../services/equipos.service';
 
 
@@ -12,7 +14,9 @@ export class ListEquiposComponent implements OnInit {
   idFavoritos:any = JSON.parse(localStorage.getItem("idFavoritos"));
   listaFavoritos:any = JSON.parse(localStorage.getItem("listaFavoritos"));
 
-  constructor(private EquiposService: EquiposService) {}
+  constructor(private EquiposService: EquiposService, private _notificacion: PushNotificationsService) {
+    this._notificacion.requestPermission();
+  }
 
   ngOnInit() {
     this.getListEquipos();
@@ -55,9 +59,22 @@ export class ListEquiposComponent implements OnInit {
         this.listaFavoritos = JSON.parse(localStorage.getItem("listaFavoritos"));
       }
       this.listaFavoritos.push(data['teams'][0]);
-      localStorage.setItem("listaFavoritos",JSON.stringify(this.listaFavoritos))
+      localStorage.setItem("listaFavoritos",JSON.stringify(this.listaFavoritos));
+      alert("exito");
+      //this.notify()
     });
     console.log(this.listaFavoritos)
+  }
+
+  notify(){ //our function to be called on click
+    let options = { //set options
+      body: "Equipo Agregado a Favoritos!",
+      icon: "assets/images/ironman.png" //adding an icon
+    }
+     this._notificacion.create('Iron Man', options).subscribe( //creates a notification
+        res => console.log(res),
+        err => console.log(err)
+    );
   }
 
 }
