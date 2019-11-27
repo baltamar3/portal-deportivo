@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { PushNotificationsModule } from 'ng-push';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +9,8 @@ import { EquiposService } from "./services/equipos.service";
 import { DetalleEquipoComponent } from './components/detalle-equipo/detalle-equipo.component';
 import { ListEquiposComponent } from './components/list-equipos/list-equipos.component';
 import { ListJugadoresComponent } from './components/list-jugadores/list-jugadores.component';
-import { DetalleJugadorComponent } from './components/detalle-jugador/detalle-jugador.component'
+import { DetalleJugadorComponent } from './components/detalle-jugador/detalle-jugador.component';
+import { DetalleEventoComponent } from './components/detalle-evento/detalle-evento.component'
 
 @NgModule({
   declarations: [
@@ -18,13 +18,13 @@ import { DetalleJugadorComponent } from './components/detalle-jugador/detalle-ju
     DetalleEquipoComponent,
     ListEquiposComponent,
     ListJugadoresComponent,
-    DetalleJugadorComponent
+    DetalleJugadorComponent,
+    DetalleEventoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    PushNotificationsModule
+    HttpClientModule
   ],
   providers: [EquiposService],
   bootstrap: [AppComponent]

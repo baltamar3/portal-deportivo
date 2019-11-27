@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.spinner-center{
+    height: 600px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column; /* aquí */
+    justify-content: center;
+}
+
 body{
     
 }

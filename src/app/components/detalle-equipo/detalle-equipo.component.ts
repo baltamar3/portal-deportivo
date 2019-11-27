@@ -68,4 +68,10 @@ export class DetalleEquipoComponent implements OnInit {
     //if(fecha<Date.now()){return true}
   }
 
+  getDetalleEvento(id:string){
+    this.EquiposService.getDetalleEvento(id).subscribe((data) => {
+      console.log("evento id:", data["events"]);
+    });
+  }
+
 }

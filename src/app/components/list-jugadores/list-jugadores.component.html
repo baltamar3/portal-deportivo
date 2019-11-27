@@ -1,6 +1,6 @@
 <div class="row">
   <div *ngFor="let jugador of jugadores" class="col-6 col-md-3 mb-5">
-    <a href="jugador/{{jugador.idPlayer}}"><img src="{{jugador.strCutout || jugador.strThumb}}" class="w-100 rounded-circle img-thumbnail btn btn-light"></a>
+    <a [routerLink]="['/jugador', jugador.idPlayer]"><img src="{{jugador.strCutout || jugador.strThumb || imgPerfilNone}}" class="w-100 rounded-circle img-thumbnail btn btn-light"></a>
     <p class="text-center">{{jugador.strPlayer}}</p>
   </div>
 </div>

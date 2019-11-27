@@ -1,0 +1,52 @@
+<div class="container">
+  <div *ngIf="detalleEvento==0" class="text-center spinner-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="detalleEvento!=0">
+    <div *ngFor="let evento of detalleEvento">
+      <div class="card">
+        <div class="row mx-auto banner">
+          <div class="col-5 text-right mt-3 mb-3">
+            <img src="{{urlEscudoEquipoLocal}}" class="card-img-top w-50" alt="...">
+          </div>
+          <div class="col-2 mt-5 text-white">
+            <h2 class="card-title text-center">VS</h2>
+          </div>
+          <div class="col-5 text-left mt-3 mb-3">
+            <img src="{{urlEscudoEquipoVisitante}}" class="card-img-top w-50" alt="...">
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tbody>
+              <tr class="row text-center">
+                <td class="col-4">{{evento.intHomeScore}}</td>
+                <td class="col-4"><strong>Resultado</strong></td>
+                <td class="col-4">{{evento.intAwayScore}}</td>
+              </tr>
+              <tr class="row text-center">
+                <td class="col-4">{{evento.strHomeFormation || "No registra"}}</td>
+                <td class="col-4"><strong>Alineación</strong></td>
+                <td class="col-4">{{evento.strAwayFormation || "No registra"}}</td>
+              </tr>
+              <tr class="row text-center">
+                <td class="col-4">{{evento.strHomeYellowCards || "No registra"}}</td>
+                <td class="col-4"><strong>T. Amarillas </strong><i class="fas fa-square text-warning"></i></td>
+                <td class="col-4">{{evento.strAwayYellowCards || "No registra"}}</td>
+              </tr>
+              <tr class="row text-center">
+                <td class="col-4">{{evento.strHomeRedCards || "No registra"}}</td>
+                <td class="col-4"><strong>T. Rojas </strong><i class="fas fa-square text-danger"></i></td>
+                <td class="col-4">{{evento.strAwayRedCards || "No registra"}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

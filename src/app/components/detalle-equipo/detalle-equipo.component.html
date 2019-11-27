@@ -1,6 +1,6 @@
 <div class="container">
-  <div *ngIf="detalleEquipo==0" class="text-center">
-    <div class="spinner-border text-primary" role="status">
+  <div *ngIf="detalleEquipo==0" class="text-center spinner-center">
+    <div class="spinner-border text-primary hijo-center" role="status">
       <span class="sr-only">Loading...</span>
     </div>
   </div>
@@ -60,9 +60,10 @@
             </div>
             <p class="text-justify">{{data.strDescriptionEN}}</p>
             <p>
-              <a href="{{data.strFacebook}}"><i class="fab fa-facebook-square fa-3x mr-2 text-primary"></i></a>
-              <a href="{{data.strInstagram}}"><i class="fab fa-instagram fa-3x mr-2 text-primary"></i></a>
-              <a href="{{data.strTwitter}}"><i class="fab fa-twitter-square fa-3x mr-2 text-primary"></i></a>
+              <a href="http://{{data.strWebsite}}" target="_blank"><i class="fas fa-globe-europe fa-3x mr-2 text-primary"></i></a>
+              <a href="http://{{data.strFacebook}}" target="_blank"><i class="fab fa-facebook-square fa-3x mr-2 text-primary"></i></a>
+              <a href="http://{{data.strInstagram}}" target="_blank"><i class="fab fa-instagram fa-3x mr-2 text-primary"></i></a>
+              <a href="http://{{data.strTwitter}}" target="_blank"><i class="fab fa-twitter-square fa-3x mr-2 text-primary"></i></a>
             </p>
           </div>
         </div>
@@ -76,9 +77,11 @@
             <p class="text-justify">{{data.strStadiumDescription}}</p>
           </div>
         </div>
+
         <div class="tab-pane fade mt-3" id="nav-jugadores" role="tabpanel" aria-labelledby="nav-jugadores-tab">
           <app-list-jugadores equipoId={{data.idTeam}}></app-list-jugadores>
         </div>
+
         <div class="tab-pane fade mt-3" id="nav-posiciones" role="tabpanel" aria-labelledby="nav-posiciones-tab">
           <div class="table-responsive">
             <table class="table">
@@ -111,6 +114,7 @@
             </table>
           </div>
         </div>
+
         <div class="tab-pane fade mt-3" id="nav-eventos" role="tabpanel" aria-labelledby="nav-eventos-tab">
           <div class="table-responsive">
             <table class="table">
@@ -137,6 +141,7 @@
               </tbody>
             </table>
           </div>
+
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -160,6 +165,7 @@
               </tbody>
             </table>
           </div>
+
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -170,7 +176,7 @@
                   <th>Local</th>
                   <th>Visitante</th>
                   <th>Fecha</th>
-                  <th>ver</th>
+                  <th>Detalles</th>
                 </tr>
               </thead>
               <tbody *ngFor="let evento of calendario">
@@ -178,7 +184,16 @@
                   <td>{{evento.strHomeTeam}}</td>
                   <td>{{evento.strAwayTeam}}</td>
                   <td>{{evento.dateEvent}}</td>
-                  <td *ngIf = "(evento.dateEvent | date: 'yyyy-MM-dd') < (getnow() | date: 'yyyy-MM-dd')"><button>ver</button></td>
+                  <td *ngIf="(evento.dateEvent | date: 'yyyy-MM-dd') < (getnow() | date: 'yyyy-MM-dd')">
+                    <a [routerLink]="['/evento', evento.idEvent]" class="btn btn-outline-success btn-sm">
+                      Ver detalles
+                    </a>
+                  </td>
+                  <td *ngIf="(evento.dateEvent | date: 'yyyy-MM-dd') > (getnow() | date: 'yyyy-MM-dd')">
+                    <button class="btn btn-outline-secondary btn-sm" disabled>
+                      Proximamente
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
