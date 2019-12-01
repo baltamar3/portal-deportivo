@@ -2,11 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
-## View index
+## Index View
 ![image](https://user-images.githubusercontent.com/20992846/69920003-fe068200-1450-11ea-9637-6b7de0889ed5.png)
 
-## View Players
+## Players View
 ![image](https://user-images.githubusercontent.com/20992846/69920066-82f19b80-1451-11ea-8f89-b13617bda614.png)
+
+## Event View
+![image](https://user-images.githubusercontent.com/20992846/69920134-280c7400-1452-11ea-8c3f-ecae34b80162.png)
 
 ## Development server
 
